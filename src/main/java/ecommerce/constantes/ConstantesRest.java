@@ -14,7 +14,9 @@ public final class ConstantesRest {
 	/* resources sistema */
 	public static final String PATH_PRODUTOS = "/api/produtos";
 	public static final String PATH_CATEGORIAS = "/api/categorias";
+	public static final String PATH_TAMANHOS = "/api/tamanhos";
 	public static final String PATH_CORES = "/api/cores";
+
 	
 
 }
