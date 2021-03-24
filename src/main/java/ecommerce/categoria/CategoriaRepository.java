@@ -1,10 +1,11 @@
 package ecommerce.categoria;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import ecommerce.base.BaseRepository;
+
 @Repository
-public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
+public interface CategoriaRepository extends BaseRepository<Categoria>{
 	
 
 }
