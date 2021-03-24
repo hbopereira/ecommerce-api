@@ -12,11 +12,18 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import ecommerce.base.BaseEntity;
 import ecommerce.cor.Cor;
+import ecommerce.secao.Secao;
 import ecommerce.tabelapreco.TabelaPreco;
 import ecommerce.tamanho.Tamanho;
 import lombok.Getter;
@@ -26,6 +33,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "produto")
+@JsonIdentityInfo(
+		generator=ObjectIdGenerators.PropertyGenerator.class,
+		property="cod")
 public class Produto extends BaseEntity {
 
 	@OneToMany(mappedBy = "produto", fetch = FetchType.EAGER, orphanRemoval = true)
@@ -40,6 +50,11 @@ public class Produto extends BaseEntity {
 	@JoinTable(name = "produto_tamanho", joinColumns = { @JoinColumn(name = "produto_cod") }, inverseJoinColumns = {
 			@JoinColumn(name = "tamanho_cod") })
 	private Set<Tamanho> tamanhos;
+	
+	@ManyToOne
+	@JoinColumn(name="secao_cod")
+	private Secao secao;
+	
 
 	public Produto() {
 		this.cores = new HashSet<Cor>();

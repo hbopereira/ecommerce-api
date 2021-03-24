@@ -16,5 +16,6 @@ public final class ConstantesRest {
 	public static final String PATH_TABELAS_PRECOS = "/api/tabelasprecos";
 	public static final String PATH_TAMANHOS = "/api/tamanhos";
 	public static final String PATH_CORES = "/api/cores";
+	public static final String PATH_SECOES = "/api/secoes";
 
 }

@@ -8,13 +8,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ecommerce.base.BaseService;
 import ecommerce.tabelapreco.TabelaPreco;
 import ecommerce.tabelapreco.TabelaPrecoService;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class ProdutoService {
+public class ProdutoService extends BaseService<Produto, ProdutoRepository>{
 
 	private final ProdutoRepository produtoRepository;
 	private final TabelaPrecoService tabelaPrecoService;

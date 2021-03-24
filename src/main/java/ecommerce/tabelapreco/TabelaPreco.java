@@ -9,7 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import ecommerce.base.BaseEntity;
 import ecommerce.produto.Produto;
@@ -20,9 +23,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name="tabela_preco")
+@JsonIdentityInfo(
+		generator=ObjectIdGenerators.PropertyGenerator.class,
+		property="cod")
 public class TabelaPreco extends BaseEntity{
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="produto_cod")
 	private Produto produto;
