@@ -1,11 +1,10 @@
-package ecommerce.categoria;
+package ecommerce.subsecao;
 
 import org.springframework.stereotype.Repository;
 
 import ecommerce.base.BaseRepository;
 
 @Repository
-public interface CategoriaRepository extends BaseRepository<Categoria>{
-	
+public interface SubSecaoRepository extends BaseRepository<SubSecao> {
 
 }
