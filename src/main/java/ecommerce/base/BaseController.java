@@ -9,21 +9,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import lombok.RequiredArgsConstructor;
+import ecommerce.constantes.ConstantesRest;
 
 public class BaseController<ENTITY extends BaseEntity, REPOSITORY extends BaseRepository<ENTITY>, SERVICE extends BaseService<ENTITY, REPOSITORY>> {
-	
+
 	@Autowired
 	private SERVICE service;
 
 	@Autowired
 	private REPOSITORY repo;
-	
+
 	@PostMapping
 	public ResponseEntity<String> salvar(@RequestBody ENTITY entity) {
 		Optional<ENTITY> resultado = service.salvar(entity);
@@ -33,25 +32,20 @@ public class BaseController<ENTITY extends BaseEntity, REPOSITORY extends BaseRe
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 	}
-	
+
 	@PutMapping
-	public ResponseEntity<String> atualizar(@RequestBody ENTITY entity) {
-		Optional<ENTITY> resultado = service.atualizar(entity);
-		if (resultado.isPresent()) {
-			return ResponseEntity.ok(resultado.get().getCod().toString());
-		}
-		return ResponseEntity.notFound().build();
+	public ResponseEntity<ENTITY> atualizar(@RequestBody ENTITY entidade) {
+		ENTITY entidadeParaAtualizar = service.chamarAtualizar(entidade);
+		return ResponseEntity.ok().body(entidadeParaAtualizar);
+	}
+	
+	@GetMapping(ConstantesRest.PATH_LISTAR_POR_COD)
+	public ResponseEntity<ENTITY> listarPorCod(@RequestParam("cod") Long cod) {
+		ENTITY entidade = service.listarPorCod(cod);
+		return ResponseEntity.ok().body(entidade);
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<ENTITY> encontrarPeloId(@PathVariable("id") Long id) {
-		Optional<ENTITY> resultado = service.encontrarPeloId(id);
-		if (resultado.isPresent()) {
-			return ResponseEntity.ok(resultado.get());
-		}
-		return ResponseEntity.notFound().build();
-	}
-
+	
 	@DeleteMapping
 	public ResponseEntity<Void> excluir(@RequestParam("cod") Long cod) {
 		service.excluir(cod);

@@ -1,13 +1,10 @@
 package ecommerce.produto;
 
-import java.util.List;
-import java.util.Optional;
 
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import ecommerce.base.BaseService;
 import ecommerce.tabelapreco.TabelaPreco;
 import ecommerce.tabelapreco.TabelaPrecoService;
@@ -15,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class ProdutoService extends BaseService<Produto, ProdutoRepository>{
+public class ProdutoService extends BaseService<Produto, ProdutoRepository> {
 
 	private final ProdutoRepository produtoRepository;
 	private final TabelaPrecoService tabelaPrecoService;
@@ -31,32 +28,4 @@ public class ProdutoService extends BaseService<Produto, ProdutoRepository>{
 		}
 		return Optional.of(novo);
 	}
-
-	@Transactional
-	public Optional<Produto> atualizar(Produto produto) {
-		if (produtoRepository.existsById(produto.getCod())) {
-			salvar(produto);
-			return Optional.of(produto);
-		} else {
-			return Optional.empty();
-		}
-	}
-
-	@Transactional
-	public void excluir(Long cod) {
-		if (produtoRepository.existsById(cod)) {
-			produtoRepository.deleteById(cod);
-		} else
-			throw new RuntimeException("Entidade [" + cod + "] não encontrada!");
-	}
-
-	@Transactional
-	public List<Produto> listar() {
-		return produtoRepository.findAll();
-	}
-	
-    public Page<Produto> pesquisar(){
-    	return null;
-    }
-
 }

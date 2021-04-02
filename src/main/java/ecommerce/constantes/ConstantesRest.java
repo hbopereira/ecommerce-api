@@ -9,6 +9,7 @@ public final class ConstantesRest {
 	public static final String PATH_SALVAR = "/salvar";
 	public static final String PATH_ATUALIZAR = "/atualizar";
 	public static final String PATH_EXCLUIR_POR_COD = "/excluir";
+	public static final String PATH_LISTAR_POR_COD = "/listarporcod";
 
 	/* resources sistema */
 	public static final String PATH_PRODUTOS = "/api/produtos";
