@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import ecommerce.base.BaseEntity;
 import ecommerce.cor.Cor;
 import ecommerce.secao.Secao;
+import ecommerce.subsecao.SubSecao;
 import ecommerce.tabelapreco.TabelaPreco;
 import ecommerce.tamanho.Tamanho;
 import lombok.Getter;
@@ -50,6 +51,10 @@ public class Produto extends BaseEntity {
 	@OneToOne
 	@JoinColumn(name = "secao_cod")
 	private Secao secao;
+	
+	@OneToOne
+	@JoinColumn(name = "subsecao_cod")
+	private SubSecao subsecao;
 
 	public Produto() {
 		this.cores = new HashSet<Cor>();
