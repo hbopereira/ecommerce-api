@@ -10,7 +10,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name="subSecao")
+@Table(name="subsecao")
 public class SubSecao extends BaseEntity{
 	
 	@Column(name="DESCRICAO")
