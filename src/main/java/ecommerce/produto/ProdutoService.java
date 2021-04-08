@@ -52,7 +52,7 @@ public class ProdutoService extends BaseService<Produto, ProdutoRepository> {
 		if (!secaoRepository.existsById(secao.get().getCod())) {
 			throw new EntidadeNaoEncontradaException("Registro não encontrado");
 		} else {
-            validou = true;
+			validou = true;
 		}
 		return validou;
 	}
